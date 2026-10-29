@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>D3 Charts Dashboard - TV Power Consumption</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="hero-header">
+    <h1>D3 Charts Dashboard</h1>
+    <p>TV power consumption</p>
+  </header>
+
+  <main class="dashboard-container">
+    
+    <div class="chart-card">
+      <div id="scatter-container" class="responsive-svg-container"></div>
+    </div>
+
+    <div class="chart-card">
+      <div id="line-container" class="responsive-svg-container"></div>
+    </div>
+
+    <div class="chart-card">
+      <div id="bar-container" class="responsive-svg-container"></div>
+    </div>
+
+    <div class="chart-card">
+      <div id="donut-container" class="responsive-svg-container"></div>
+    </div>
+
+  </main>
+
+  <footer class="page-footer">
+    <p>&copy; 2026 [Lee Kok Kiong]. GenAI Acknowledgement: Parts of this code were generated with the assistance of GitHub Copilot / ChatGPT. All code has been reviewed and understood.</p>
+  </footer>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  
+  <script src="js/scatter-plot.js"></script>
+  <script src="js/line-chart.js"></script>
+  <script src="js/bar-chart.js"></script>
+  <script src="js/donut-chart.js"></script>
+  
+</body>
+</html>
