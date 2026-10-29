@@ -39,13 +39,10 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
         .attr("transform", `translate(0,${innerH})`)
         .call(d3.axisBottom(xScale))
         .style("font-size", "13px")
-        .call(g => g.select(".domain").attr("stroke", "#ccc"));
 
     svg.append("g")
         .call(d3.axisLeft(yScale).ticks(5))
         .style("font-size", "12px")
-        .call(g => g.select(".domain").remove())
-        .call(g => g.selectAll(".tick line").attr("stroke", "#eee"));
 
     svg.append("text")
         .attr("x", innerW / 2)

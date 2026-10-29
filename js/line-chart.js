@@ -1,4 +1,3 @@
-// 读取电价 CSV 数据
 d3.csv("data/Ex5_ARE_Spot_Prices.csv").then(data => {
     const states = [
         "Queensland ($ per megawatt hour)",
