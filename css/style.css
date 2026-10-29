@@ -1,0 +1,87 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-header {
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 60px 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.hero-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.hero-header p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.dashboard-container {
+  flex: 1;
+  max-width: 900px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.chart-card {
+  background-color: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.chart-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+}
+
+.responsive-svg-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.responsive-svg-container svg {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+}
+
+.responsive-svg-container text {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  fill: #666;
+}
+
+.page-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #4caf50;
+  font-size: 0.8rem;
+  color: white;
+  margin-top: auto;
+}
