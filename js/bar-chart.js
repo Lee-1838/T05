@@ -63,6 +63,23 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
         .style("fill", "#555")
         .text("Mean Energy Consumption (kWh/year)");
 
+    svg.append("g")
+        .attr("class", "grid")
+        .call(d3.axisLeft(yScale)
+            .ticks(5)
+            .tickSize(-innerW)
+            .tickFormat("")
+        )
+        .call(g => g.select(".domain").remove())
+        .call(g => g.selectAll(".tick line")
+            .attr("stroke", "#818181")
+            .attr("stroke-dasharray", "4 4")
+            .attr("display", d => d === 0 ? "none" : null)
+        );
+
+    svg.selectAll("rect.bar")
+        // ...
+
     const colorScale = d3.scaleOrdinal()
         .domain(["LCD", "LED", "OLED"])
         .range(["#64b5f6", "#207eca", "#040e91"]);

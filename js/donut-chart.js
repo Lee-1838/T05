@@ -3,11 +3,11 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
         d.energy = +d['Mean(Labelled energy consumption (kWh/year))'];
     });
 
-    const width = 1000;
-    const height = 700;
-    const margin = 150;
+    const width = 800;
+    const height = 800;
+    const margin = { top: 50, right: 120, bottom: 50, left: 120 };
     
-    const radius = Math.min(width, height) / 2 - margin;
+    const radius = Math.min(width - margin.left - margin.right, height - margin.top - margin.bottom) / 2;
 
     const svg = d3.select("#donut-container")
         .append("svg")
@@ -19,7 +19,7 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
         .attr("x", 0)
         .attr("y", -radius - 18)
         .attr("text-anchor", "middle")
-        .style("font-size", "23px")
+        .style("font-size", "25px")
         .style("font-weight", "bold")
         .style("fill", "#333")
         .text("Avg Energy by Screen Tech (All Sizes)");
@@ -75,7 +75,7 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
             const posC = outerArc.centroid(d);
             
             const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
-            posC[0] = radius * 1.1 * (midangle < Math.PI ? 1 : -1);
+            posC[0] = radius * 1.0 * (midangle < Math.PI ? 1 : -1);
             
             return [posA, posB, posC];
         });
@@ -88,14 +88,14 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
         .attr("transform", function(d) {
             const pos = outerArc.centroid(d);
             const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
-            pos[0] = radius * 1.15 * (midangle < Math.PI ? 1 : -1);
+            pos[0] = radius * 1.0 * (midangle < Math.PI ? 1 : -1);
             return `translate(${pos})`;
         })
         .style("text-anchor", function(d) {
             const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
             return midangle < Math.PI ? "start" : "end";
         })
-        .style("font-size", "16px")
+        .style("font-size", "20px")
         .style("font-weight", "bold")
         .style("fill", "#333");
 
@@ -111,8 +111,9 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
 
     svg.append("text")
         .attr("text-anchor", "middle")
-        .attr("y", 20)
-        .style("font-size", "12px")
+        .attr("y", 25)
+        .style("font-size", "18px")
+        .style("font-weight", "bold")
         .style("fill", "#666")
         .text("Avg kWh/year");
 });

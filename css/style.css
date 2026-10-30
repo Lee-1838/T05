@@ -4,15 +4,6 @@
   padding: 0;
 }
 
-/* body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #fafafa;
-  color: #333;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-} */
-
 .hero-header {
   background-color: #4caf50;
   color: white;
@@ -34,30 +25,26 @@
   opacity: 0.9;
 }
 
-/* 全局背景变成极浅的灰白色，凸显内容 */
 body {
   background-color: #fafafa;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* 容器不再有白色背景，只限制最大宽度 */
 .dashboard-container {
   max-width: 1200px;
   margin: 60px auto;
   padding: 0 20px;
 }
 
-/* --- 核心区块样式 --- */
 .story-section {
   display: flex;
-  align-items: center; /* 垂直居中对齐 */
-  gap: 60px; /* 图文之间的超大留白 */
-  margin-bottom: 80px; /* 区块之间的距离 */
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 80px;
   padding-bottom: 40px;
-  border-bottom: 1px solid #eaeaea; /* 只有底部的极细分割线 */
+  border-bottom: 1px solid #eaeaea;
 }
 
-/* 左侧文字栏 */
 .text-col {
   flex: 1;
 }
@@ -66,7 +53,7 @@ body {
   font-size: 28px;
   color: #1a1a1a;
   margin-bottom: 20px;
-  font-weight: 800; /* 标题加粗，更有冲击力 */
+  font-weight: 800;
   letter-spacing: -0.5px;
 }
 
@@ -78,14 +65,18 @@ body {
 }
 
 .text-col strong {
-  color: #1565c0; /* 强调的词用蓝色，呼应图表 */
+  color: #1565c0;
   font-weight: 600;
 }
 
-/* 右侧图表栏 */
 .chart-col {
-  flex: 1.5; /* 图表占据更多空间 */
-  min-width: 0; /* 防止 flex 溢出 */
+  flex: 1.5;
+  min-width: 0;
+}
+
+.centered-section .chart-col {
+  flex: 2.5;
+  width: 100%;
 }
 
 .chart-col svg {
@@ -93,14 +84,10 @@ body {
   height: auto;
 }
 
-/* --- 特殊排版修饰 --- */
-
-/* 反向排版：右文左图 (图表在 DOM 中排第二，通过 row-reverse 把它放到左边) */
 .story-section.reverse {
   flex-direction: row-reverse;
 }
 
-/* 全宽区块：文字居中，图表占满 */
 .full-width-section {
   flex-direction: column;
   align-items: center;
@@ -114,47 +101,49 @@ body {
   width: 100%;
 }
 
-/* 居中区块：用于环形图 */
 .centered-section {
   flex-direction: column;
   align-items: center;
-  border-bottom: none; /* 最后一个区块去掉底线 */
+  border-bottom: none;
 }
 .centered-section .text-col {
   text-align: center;
   max-width: 600px;
   margin-bottom: 30px;
 }
-.centered-section .small-chart {
-  max-width: 500px; /* 限制环形图宽度 */
+
+.centered-section {
+  gap: 0px;
 }
 
-/* --- 响应式：手机端全部变成上下堆叠 --- */
+.chart-col svg {
+  width: 100%;
+  height: auto;
+  max-height: 550px;
+  display: block;
+  margin: 0 auto;
+}
+
+#donut-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#donut-container svg {
+  width: 100% !important;
+  max-width: 90% !important;
+  max-height: 600px !important;
+  display: block;
+  margin: 0 auto;
+}
+
 @media (max-width: 900px) {
   .story-section {
     flex-direction: column !important;
     gap: 30px;
     margin-bottom: 50px;
   }
-}
-
-.responsive-svg-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.responsive-svg-container svg {
-  width: 100%;
-  height: auto;
-  max-height: 400px;
-}
-
-.responsive-svg-container text {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 11px;
-  fill: #666;
 }
 
 .page-footer {
@@ -164,17 +153,4 @@ body {
   font-size: 0.8rem;
   color: white;
   margin-top: auto;
-}
-
-#donut-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 20px;
-}
-
-#donut-container svg {
-  width: 100%;
-  max-width: 800px !important;
-  height: auto;
 }
