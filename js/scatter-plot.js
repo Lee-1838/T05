@@ -1,4 +1,3 @@
-// 读取 CSV 数据
 d3.csv("data/Ex5_TV_energy.csv").then(data => {
     data.forEach(d => {
         d.screensize = +d.screensize;
@@ -66,26 +65,18 @@ d3.csv("data/Ex5_TV_energy.csv").then(data => {
         .style("fill", "#333")
         .text("Energy Consumption (kWh/year)");
 
+    const color = d3.scaleOrdinal()
+        .domain(["LCD", "LCD (LED)", "OLED"])
+        .range(["#00bcd4", "#2196f3", "#001aac"]);
+
     svg.selectAll("circle")
         .data(cleanData)
         .join("circle")
         .attr("cx", d => xScale(d.star2))
         .attr("cy", d => yScale(d.energy_consumpt))
         .attr("r", 4)
-        .attr("fill", "#4c74af")
-        .attr("opacity", 0.4)
-        .attr("stroke", "#383e8e")
-        .attr("stroke-width", 0.5);
-
-    const color = d3.scaleOrdinal()
-        .domain(["LCD", "LCD (LED)", "OLED"])
-        .range(["#81c784", "#4caf50", "#1b5e20"]);
-
-    svg.selectAll("circle")
         .attr("fill", d => color(d.screen_tech))
-        .attr("opacity", 0.6);
-        
-    svg.selectAll("circle")
+        .attr("opacity", 0.6)
         .append("title")
-        .text(d => `${d.brand.toUpperCase()}\nConsumption: ${d.energy_consumpt} kWh\nScreen Technology: ${d.screen_tech}`);
+        .text(d => `Brand: ${d.brand.toUpperCase()}\nConsumption: ${d.energy_consumpt} kWh\nScreen Tech: ${d.screen_tech}`);
 });

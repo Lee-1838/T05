@@ -3,9 +3,9 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
         d.energy = +d['Mean(Labelled energy consumption (kWh/year))'];
     });
 
-    const width = 600;
-    const height = 600;
-    const margin = 40;
+    const width = 1000;
+    const height = 700;
+    const margin = 150;
     
     const radius = Math.min(width, height) / 2 - margin;
 
@@ -75,7 +75,7 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
             const posC = outerArc.centroid(d);
             
             const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
-            posC[0] = radius * 0.95 * (midangle < Math.PI ? 1 : -1);
+            posC[0] = radius * 1.1 * (midangle < Math.PI ? 1 : -1);
             
             return [posA, posB, posC];
         });
@@ -88,7 +88,7 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
         .attr("transform", function(d) {
             const pos = outerArc.centroid(d);
             const midangle = d.startAngle + (d.endAngle - d.startAngle) / 2;
-            pos[0] = radius * (midangle < Math.PI ? 1.05 : -1.05);
+            pos[0] = radius * 1.15 * (midangle < Math.PI ? 1 : -1);
             return `translate(${pos})`;
         })
         .style("text-anchor", function(d) {
@@ -104,7 +104,7 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
     svg.append("text")
         .attr("text-anchor", "middle")
         .attr("y", -5)
-        .style("font-size", "28px")
+        .style("font-size", "45px")
         .style("font-weight", "bold")
         .style("fill", "#333")
         .text(totalAvg.toFixed(1));

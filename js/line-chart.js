@@ -98,6 +98,7 @@ d3.csv("data/Ex5_ARE_Spot_Prices.csv").then(data => {
         const stateData = cleanData.filter(d => d[state] !== null);
         const path = svg.append("path")
             .datum(stateData)
+            .attr("class", "state-line")
             .attr("fill", "none")
             .attr("stroke", colorScale(state))
             .attr("stroke-width", 2.5)
@@ -112,10 +113,10 @@ d3.csv("data/Ex5_ARE_Spot_Prices.csv").then(data => {
             .attr("stroke-dashoffset", 0);
             
         path.on("mouseenter", function() {
-            d3.selectAll("path").style("opacity", 0.2);
+            d3.selectAll(".state-line").style("opacity", 0.2);
             d3.select(this).style("opacity", 1).attr("stroke-width", 4);
         }).on("mouseleave", function() {
-            d3.selectAll("path").style("opacity", 1);
+            d3.selectAll(".state-line").style("opacity", 1);
             d3.select(this).attr("stroke-width", 2.5);
         });
     });

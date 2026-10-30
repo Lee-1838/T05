@@ -14,35 +14,51 @@
   </header>
 
   <main class="dashboard-container">
-    
-    <div class="chart-card">
-      <p class="chart-desc">
-        This scatter plot explores the relationship between a television's energy star rating and its actual energy consumption. Each dot represents a TV model. Interestingly, while higher star ratings generally mean lower energy use, there is still a wide variation in consumption even among TVs with the same rating.
-      </p>
-      <div id="scatter-container" class="responsive-svg-container"></div>
-    </div>
 
-    <div class="chart-card">
-      <p class="chart-desc">
-        This line chart tracks the spot power prices across major Australian states from 1998 to 2024. The data reveals a volatile trend, with a significant spike in 2021-2022. It highlights how different regions experience energy market fluctuations differently over time.
-      </p>
-      <div id="line-container" class="responsive-svg-container"></div>
-    </div>
+    <!-- 1. 散点图：左文右图 -->
+    <section class="story-section">
+      <div class="text-col">
+        <h2>The Rating Paradox</h2>
+        <p>This scatter plot explores the relationship between a television's energy star rating and its actual energy consumption.</p>
+        <p>Interestingly, while <strong>higher star ratings generally mean lower energy use</strong>, there is still a wide variation among TVs with the same rating.</p>
+      </div>
+      <div class="chart-col">
+        <div id="scatter-container"></div>
+      </div>
+    </section>
 
-    <div class="chart-card">
-      <p class="chart-desc">
-        Focusing on the most popular TV size in the market (55 inches), this bar chart compares the average energy consumption across different screen technologies. It clearly shows that OLED TVs consume noticeably more energy on average compared to standard LCD and LED models.
-      </p>
-      <div id="bar-container" class="responsive-svg-container"></div>
-    </div>
+    <!-- 2. 折线图：全宽强调 (文字在上方居中，图表横跨全屏) -->
+    <section class="story-section full-width-section">
+      <div class="text-col centered">
+        <h2>Volatile Energy Markets</h2>
+        <p>Tracking spot power prices across Australian states reveals a volatile trend, with a <strong>significant spike in 2021-2022</strong>.</p>
+      </div>
+      <div class="chart-col wide-chart">
+        <div id="line-container"></div>
+      </div>
+    </section>
 
-    <div class="chart-card">
-      <p class="chart-desc">
-        When looking at all TV sizes combined, this donut chart illustrates the proportion of total average energy consumption by screen technology. The center displays the overall average energy consumption (kWh/year) across all registered models in this dataset.
-      </p>
-      <div id="donut-container" class="responsive-svg-container"></div>
-    </div>
+    <!-- 3. 柱状图：右文左图 (反向对比) -->
+    <section class="story-section reverse">
+      <div class="text-col">
+        <h2>OLED vs The Rest</h2>
+        <p>Focusing on the most popular 55-inch TVs, we see that <strong>OLED screens consume noticeably more energy</strong> on average compared to standard LCD and LED models.</p>
+      </div>
+      <div class="chart-col">
+        <div id="bar-container"></div>
+      </div>
+    </section>
 
+    <!-- 4. 环形图：居中迷你区块 -->
+    <section class="story-section centered-section">
+      <div class="text-col centered">
+        <h2>Overall Tech Share</h2>
+        <p>When looking at all sizes combined, the center displays the <strong>overall average (398.4 kWh/year)</strong> across all models.</p>
+      </div>
+      <div class="chart-col small-chart">
+        <div id="donut-container"></div>
+      </div>
+    </section>
   </main>
 
   <footer class="page-footer">

@@ -4,14 +4,14 @@
   padding: 0;
 }
 
-body {
+/* body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f4f7f6;
+  background-color: #fafafa;
   color: #333;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-}
+} */
 
 .hero-header {
   background-color: #4caf50;
@@ -34,36 +34,108 @@ body {
   opacity: 0.9;
 }
 
+/* 全局背景变成极浅的灰白色，凸显内容 */
+body {
+  background-color: #fafafa;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* 容器不再有白色背景，只限制最大宽度 */
 .dashboard-container {
-  flex: 1;
-  max-width: 900px;
-  width: 100%;
-  margin: 40px auto;
+  max-width: 1200px;
+  margin: 60px auto;
   padding: 0 20px;
+}
+
+/* --- 核心区块样式 --- */
+.story-section {
   display: flex;
+  align-items: center; /* 垂直居中对齐 */
+  gap: 60px; /* 图文之间的超大留白 */
+  margin-bottom: 80px; /* 区块之间的距离 */
+  padding-bottom: 40px;
+  border-bottom: 1px solid #eaeaea; /* 只有底部的极细分割线 */
+}
+
+/* 左侧文字栏 */
+.text-col {
+  flex: 1;
+}
+
+.text-col h2 {
+  font-size: 28px;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  font-weight: 800; /* 标题加粗，更有冲击力 */
+  letter-spacing: -0.5px;
+}
+
+.text-col p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.text-col strong {
+  color: #1565c0; /* 强调的词用蓝色，呼应图表 */
+  font-weight: 600;
+}
+
+/* 右侧图表栏 */
+.chart-col {
+  flex: 1.5; /* 图表占据更多空间 */
+  min-width: 0; /* 防止 flex 溢出 */
+}
+
+.chart-col svg {
+  width: 100%;
+  height: auto;
+}
+
+/* --- 特殊排版修饰 --- */
+
+/* 反向排版：右文左图 (图表在 DOM 中排第二，通过 row-reverse 把它放到左边) */
+.story-section.reverse {
+  flex-direction: row-reverse;
+}
+
+/* 全宽区块：文字居中，图表占满 */
+.full-width-section {
   flex-direction: column;
-  gap: 40px;
+  align-items: center;
+}
+.full-width-section .text-col.centered {
+  text-align: center;
+  max-width: 700px;
+  margin-bottom: 30px;
+}
+.full-width-section .wide-chart {
+  width: 100%;
 }
 
-.chart-desc {
-  font-size: 14px;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 25px;
-  text-align: justify;
+/* 居中区块：用于环形图 */
+.centered-section {
+  flex-direction: column;
+  align-items: center;
+  border-bottom: none; /* 最后一个区块去掉底线 */
+}
+.centered-section .text-col {
+  text-align: center;
+  max-width: 600px;
+  margin-bottom: 30px;
+}
+.centered-section .small-chart {
+  max-width: 500px; /* 限制环形图宽度 */
 }
 
-.chart-card {
-  background-color: white;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.chart-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+/* --- 响应式：手机端全部变成上下堆叠 --- */
+@media (max-width: 900px) {
+  .story-section {
+    flex-direction: column !important;
+    gap: 30px;
+    margin-bottom: 50px;
+  }
 }
 
 .responsive-svg-container {
@@ -92,4 +164,17 @@ body {
   font-size: 0.8rem;
   color: white;
   margin-top: auto;
+}
+
+#donut-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#donut-container svg {
+  width: 100%;
+  max-width: 800px !important;
+  height: auto;
 }

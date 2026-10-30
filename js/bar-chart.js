@@ -65,7 +65,7 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
 
     const colorScale = d3.scaleOrdinal()
         .domain(["LCD", "LED", "OLED"])
-        .range(["#81c784", "#4caf50", "#2e7d32"]);
+        .range(["#64b5f6", "#207eca", "#040e91"]);
 
     svg.selectAll("rect.bar")
         .data(data)
@@ -79,15 +79,14 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
         .attr("rx", 4)
         .attr("ry", 4)
         .on("mouseenter", function() {
-            d3.select(this).attr("fill", "#388e3c");
+            d3.select(this).attr("fill", "#0d47a1");
         })
         .on("mouseleave", function(event, d) {
             d3.select(this).attr("fill", colorScale(d.Screen_Tech));
         })
-        // 添加过渡动画
         .transition()
         .duration(1000)
-        .delay((d, i) => i * 150) // 依次出场
+        .delay((d, i) => i * 150)
         .attr("y", d => yScale(d.energy))
         .attr("height", d => innerH - yScale(d.energy));
 
