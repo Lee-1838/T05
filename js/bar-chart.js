@@ -72,12 +72,24 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
         .join("rect")
         .attr("class", "bar")
         .attr("x", d => xScale(d.Screen_Tech))
-        .attr("y", d => yScale(d.energy))
+        .attr("y", innerH) 
+        .attr("height", 0) 
         .attr("width", xScale.bandwidth())
-        .attr("height", d => innerH - yScale(d.energy))
         .attr("fill", d => colorScale(d.Screen_Tech))
         .attr("rx", 4)
-        .attr("ry", 4);
+        .attr("ry", 4)
+        .on("mouseenter", function() {
+            d3.select(this).attr("fill", "#388e3c");
+        })
+        .on("mouseleave", function(event, d) {
+            d3.select(this).attr("fill", colorScale(d.Screen_Tech));
+        })
+        // 添加过渡动画
+        .transition()
+        .duration(1000)
+        .delay((d, i) => i * 150) // 依次出场
+        .attr("y", d => yScale(d.energy))
+        .attr("height", d => innerH - yScale(d.energy));
 
     svg.selectAll("text.value-label")
         .data(data)
@@ -89,5 +101,11 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
         .style("font-size", "13px")
         .style("font-weight", "bold")
         .style("fill", "#333")
-        .text(d => d.energy.toFixed(2));
+        .text(d => d.energy.toFixed(2))
+        .style("opacity", 0)
+        .transition()
+        .duration(1000)
+        .delay((d, i) => i * 150 + 500)
+        .style("opacity", 1);
+
 });

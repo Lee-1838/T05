@@ -71,6 +71,7 @@ d3.csv("data/Ex5_ARE_Spot_Prices.csv").then(data => {
         .attr("y", innerH + 40)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
+        .style("font-weight", "bold")
         .style("fill", "#333")
         .text("Year");
 
@@ -80,6 +81,7 @@ d3.csv("data/Ex5_ARE_Spot_Prices.csv").then(data => {
         .attr("x", -innerH / 2)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
+        .style("font-weight", "bold")
         .style("fill", "#333")
         .text("Spot Price ($/MWh)");
 
@@ -94,17 +96,29 @@ d3.csv("data/Ex5_ARE_Spot_Prices.csv").then(data => {
 
     states.forEach(state => {
         const stateData = cleanData.filter(d => d[state] !== null);
-
-        svg.append("path")
+        const path = svg.append("path")
             .datum(stateData)
             .attr("fill", "none")
             .attr("stroke", colorScale(state))
             .attr("stroke-width", 2.5)
-            .attr("d", d => {
-                return line.x(d => xScale(d.Year)).y(d => yScale(d[state]))(stateData);
-            });
-    });
+            .attr("d", d => line.x(d => xScale(d.Year)).y(d => yScale(d[state]))(stateData));
 
+        const totalLength = path.node().getTotalLength();
+        path.attr("stroke-dasharray", totalLength + " " + totalLength)
+            .attr("stroke-dashoffset", totalLength)
+            .transition()
+            .duration(2000)
+            .ease(d3.easeLinear)
+            .attr("stroke-dashoffset", 0);
+            
+        path.on("mouseenter", function() {
+            d3.selectAll("path").style("opacity", 0.2);
+            d3.select(this).style("opacity", 1).attr("stroke-width", 4);
+        }).on("mouseleave", function() {
+            d3.selectAll("path").style("opacity", 1);
+            d3.select(this).attr("stroke-width", 2.5);
+        });
+    });
     const legend = svg.append("g")
         .attr("transform", `translate(${innerW + 20}, 0)`);
 

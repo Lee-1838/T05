@@ -45,16 +45,24 @@ d3.csv("data/Ex5_TV_energy_Allsizes_byScreenType.csv").then(data => {
         .join("g")
         .attr("class", "arc");
 
+    const arcHover = d3.arc()
+        .innerRadius(radius * 0.55)
+        .outerRadius(radius + 10);
+        
+    const arcNormal = d3.arc()
+        .innerRadius(radius * 0.55)
+        .outerRadius(radius);
+
     arcs.append("path")
-        .attr("d", arc)
+        .attr("d", arcNormal)
         .attr("fill", d => colorScale(d.data.Screen_Tech))
         .attr("stroke", "white")
         .attr("stroke-width", "2px")
-        .on("mouseover", function() {
-            d3.select(this).transition().duration(200).attr("transform", "scale(1.05)");
+        .on("mouseover", function(event, d) {
+            d3.select(this).transition().duration(200).attr("d", arcHover);
         })
-        .on("mouseout", function() {
-            d3.select(this).transition().duration(200).attr("transform", "scale(1)");
+        .on("mouseout", function(event, d) {
+            d3.select(this).transition().duration(200).attr("d", arcNormal);
         });
 
     arcs.append("polyline")

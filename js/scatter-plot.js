@@ -52,6 +52,7 @@ d3.csv("data/Ex5_TV_energy.csv").then(data => {
         .attr("y", innerH + 40)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
+        .style("font-weight", "bold")
         .style("fill", "#333")
         .text("Star Rating");
 
@@ -61,6 +62,7 @@ d3.csv("data/Ex5_TV_energy.csv").then(data => {
         .attr("x", -innerH / 2)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
+        .style("font-weight", "bold")
         .style("fill", "#333")
         .text("Energy Consumption (kWh/year)");
 
@@ -74,4 +76,16 @@ d3.csv("data/Ex5_TV_energy.csv").then(data => {
         .attr("opacity", 0.4)
         .attr("stroke", "#383e8e")
         .attr("stroke-width", 0.5);
+
+    const color = d3.scaleOrdinal()
+        .domain(["LCD", "LCD (LED)", "OLED"])
+        .range(["#81c784", "#4caf50", "#1b5e20"]);
+
+    svg.selectAll("circle")
+        .attr("fill", d => color(d.screen_tech))
+        .attr("opacity", 0.6);
+        
+    svg.selectAll("circle")
+        .append("title")
+        .text(d => `${d.brand.toUpperCase()}\nConsumption: ${d.energy_consumpt} kWh\nScreen Technology: ${d.screen_tech}`);
 });
