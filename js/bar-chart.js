@@ -77,9 +77,6 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
             .attr("display", d => d === 0 ? "none" : null)
         );
 
-    svg.selectAll("rect.bar")
-        // ...
-
     const colorScale = d3.scaleOrdinal()
         .domain(["LCD", "LED", "OLED"])
         .range(["#64b5f6", "#207eca", "#040e91"]);
@@ -89,8 +86,8 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
         .join("rect")
         .attr("class", "bar")
         .attr("x", d => xScale(d.Screen_Tech))
-        .attr("y", innerH) 
-        .attr("height", 0) 
+        .attr("y", d => yScale(d.energy)) 
+        .attr("height", d => innerH - yScale(d.energy)) 
         .attr("width", xScale.bandwidth())
         .attr("fill", d => colorScale(d.Screen_Tech))
         .attr("rx", 4)
@@ -100,12 +97,7 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
         })
         .on("mouseleave", function(event, d) {
             d3.select(this).attr("fill", colorScale(d.Screen_Tech));
-        })
-        .transition()
-        .duration(1000)
-        .delay((d, i) => i * 150)
-        .attr("y", d => yScale(d.energy))
-        .attr("height", d => innerH - yScale(d.energy));
+        });
 
     svg.selectAll("text.value-label")
         .data(data)
@@ -117,11 +109,5 @@ d3.csv("data/Ex5_TV_energy_55inchtv_byScreenType.csv").then(data => {
         .style("font-size", "13px")
         .style("font-weight", "bold")
         .style("fill", "#333")
-        .text(d => d.energy.toFixed(2))
-        .style("opacity", 0)
-        .transition()
-        .duration(1000)
-        .delay((d, i) => i * 150 + 500)
-        .style("opacity", 1);
-
+        .text(d => d.energy.toFixed(2));
 });
